@@ -42,6 +42,11 @@ export function Home(){
             return 
         }
 
+        if (roomRef.val().endedAt) {
+            alert('room already closed.')
+            return
+        }
+
         history.push(`/rooms/${roomCode}`)
     }
 
@@ -49,8 +54,8 @@ export function Home(){
         <div id='page-auth'>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simnolizando perguntas e respostas" />
-                <strong>Crie salas  de Q&amp;A ao-vivo</strong>
-                <p>Tire as dúvidas da sua atividade em tempo real</p>
+                <strong>Toda pergunta tem uma resposta</strong>
+                <p>Tire suas duvidas em tempo real </p>
             </aside>
             <main>
                 <div className='main-content'>
