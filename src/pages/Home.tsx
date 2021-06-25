@@ -2,9 +2,9 @@
 import { useHistory } from 'react-router-dom'
 
 import illustrationImg from '../assets/images/illustration.svg'
-import LoginImg from '../assets/images/login.svg'
-import logoImg from '../assets/images/logo.svg'
+import {FiLogIn} from'react-icons/fi'
 import googleIconImg from '../assets/images/google-icon.svg'
+import { FaFacebookF } from 'react-icons/fa'
 
 import { Button } from '../componentes/Button'
 import { useAuth } from '../hooks/useAuth'
@@ -27,7 +27,6 @@ export function Home(){
        
         history.push('/rooms/new')
     }
-
 
     async function handleJoinRoom(event: FormEvent) {
         event.preventDefault()
@@ -60,7 +59,12 @@ export function Home(){
             </aside>
             <main>
                 <div className='main-content'>
-                    <img src={logoImg} alt="Ask-me" />
+                    <h1 className='login'>Login:</h1>
+                    {/* <img src={logoImg} alt="Ask-me" /> */}
+                    <button onClick={hendleCreateRoom} className='create-room-facebook'>
+                        <FaFacebookF size={30} />
+                        Crie sua sala com o Facebook 
+                    </button>
                     <button onClick={hendleCreateRoom} className='create-room'>
                         <img src={googleIconImg} alt="Logo da Google" />
                         Crie sua sala com o Google
@@ -74,8 +78,8 @@ export function Home(){
                             value={roomCode}
                         />
                         <Button type='submit'>
-                            <img src={LoginImg} alt="" />
-                             Entrar
+                            <FiLogIn size={20} />
+                            Entrar
                         </Button>
                     </form>
                 </div>

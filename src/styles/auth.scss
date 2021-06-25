@@ -4,7 +4,7 @@
     height: 100vh;
     aside {
         flex: 7;
-        background-color: #835afd;
+        background-color: #808080;
         color: #FFF;
         display: flex;
         flex-direction: column;
@@ -44,8 +44,13 @@
         max-width: 320px;
         align-items: stretch;
         text-align: center;
+        >h1 {
+            color: #808080;
+            font-size: 40px;
+        }
         >img {
             align-self: center;
+            width: 320px;
         }
         form {
             input {
@@ -68,12 +73,32 @@
             color: #737380;
             margin-top: 16px;
             a {
-                color: #e559f9;
+                color: black;
             }
         }
     }
+    .create-room-facebook {
+        margin-top: 36px;
+        height: 50px;
+        border-radius: 8px;
+        font-weight: 500;
+        background: #4267B2;
+        color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 0;
+        transition: filter 0.2;
+        img {
+            margin-right: 8px;
+        }
+        &:hover {
+            filter: brightness(0.9)
+        }
+    }
     .create-room {
-        margin-top: 64px;
+        margin-top: 16px;
         height: 50px;
         border-radius: 8px;
         font-weight: 500;

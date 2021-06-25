@@ -8,8 +8,8 @@
         margin-top: 8px;
     }
     &.highLighted {
-        background: #F4F0FF;
-        border: 1px solid #835afd;
+        background: #DDD6CD;
+        border: 1px solid #808080;
     }
     &.answered {
         background: #DBDCDD;
@@ -53,10 +53,10 @@
                     filter: brightness(0.8);
                 }
                 &.liked {
-                    color: #835afd;
+                    color: #808080;
                 }
                 svg path {
-                    stroke: #835afd;
+                    stroke: #808080;
                 }
             }
         }

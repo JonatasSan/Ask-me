@@ -1,8 +1,9 @@
 // import { useEffect } from 'react'
 import { FormEvent, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
-import LogoImg from '../assets/images/logo.svg'
+import LogoImg from '../assets/images/logo.png'
+import {FiLogOut} from 'react-icons/fi'
 
 import { Button } from '../componentes/Button'
 import { Question } from '../componentes/Question/index'
@@ -18,6 +19,7 @@ type RoomParams = {
 }
 
 export function Room() {
+    const history = useHistory()
     const {user} = useAuth()
     const params = useParams<RoomParams>()
     const [newQuestion,setNewQuestion] = useState('');
@@ -50,6 +52,13 @@ export function Room() {
         setNewQuestion('')
 
     }
+    async function handleEndRoom(){
+        await database.ref(`rooms/${roomId}`).update({
+            endeedAt: new Date(),
+        })
+
+        history.push('/')
+    }
 
     async function handLikeQuestion(questionId: string, likeId: string | undefined) {
         if(likeId){
@@ -66,13 +75,18 @@ export function Room() {
             <header>
                 <div className="content">
                     <img src={LogoImg} alt="Ask-me" />
-                    <RoomCode code={roomId} />
+                    <div>
+                        <RoomCode code={roomId} />
+                        <Button isOutlined onClick={handleEndRoom}>
+                            <FiLogOut size={20}/>
+                        </Button>
+                    </div>
                 </div>
             </header>
 
             <main className="content">
                 <div className="room-title">
-                    <h1>Sala {title}</h1>
+                    <h1>Sala: {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta</span>}
                 </div>
 

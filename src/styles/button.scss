@@ -2,9 +2,9 @@
     height: 50px;
     border-radius: 8px;
     font-weight: 500;
-    background: #835afd;
+    background: #808080;
     color: #FFF;
-    padding: 0 32px;
+    padding: 0 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,8 +16,8 @@
     }
     &.outlined {
         background: #FFF;
-        border: 1px solid #835afd;
-        color: #835afd;
+        border: 1px solid #808080;
+        color: #808080;
     }
     &:not(:disabled):hover {
         filter: brightness(0.9)

@@ -1,7 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom'
 
-import LogoutImg from '../assets/images/logout.svg'
-import LogoImg from '../assets/images/logo.svg'
+import {FiLogOut} from 'react-icons/fi'
+import LogoImg from '../assets/images/logo.png'
 import deleteImg from '../assets/images/delete.svg'
 import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
@@ -9,7 +9,6 @@ import answerImg from '../assets/images/answer.svg'
 import { Button } from '../componentes/Button'
 import { Question } from '../componentes/Question/index'
 import { RoomCode } from '../componentes/RoomCode'
-// import { useAuth } from '../hooks/useAuth'
 import { useRoom } from '../hooks/useRoom'
 
 import '../styles/room.scss'
@@ -27,7 +26,6 @@ export function AdminRoom() {
     
     
     const { title, questions } = useRoom(roomId)
-    console.log(questions)
 
     async function handleEndRoom(){
         await database.ref(`rooms/${roomId}`).update({
@@ -61,7 +59,7 @@ export function AdminRoom() {
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>
-                            <img onClick={handleEndRoom} src={LogoutImg} alt="Encerrar sala" />
+                            <FiLogOut size={20}/>
                         </Button>
                     </div>
                 </div>
@@ -69,7 +67,7 @@ export function AdminRoom() {
 
             <main className="content">
                 <div className="room-title">
-                    <h1>Sala {title}</h1>
+                    <h1>Sala: {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta</span>}
                 </div>
 

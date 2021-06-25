@@ -4,8 +4,8 @@ import { Link, useHistory } from 'react-router-dom'
 // import { AuthContext } from '../contexts/AuthContext'
 
 import illustrationImg from '../assets/images/illustration.svg'
-import logoImg from '../assets/images/logo.svg'
-
+// import logoImg from '../assets/images/logo.png'
+import logoImg from '../assets/images/juntos.svg'
 import { Button } from '../componentes/Button'
 import { database } from '../services/firebase'
 import { useAuth } from '../hooks/useAuth'
@@ -38,14 +38,13 @@ export function NewRoom(){
         <div id='page-auth'>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simnolizando perguntas e respostas" />
-                <strong>Crie salas  de Q&amp;A ao-vivo</strong>
-                <p>Tire as dúvidas da sua atividade em tempo real</p>
+                <strong>Toda pergunta tem uma resposta</strong>
+                <p>Tire suas duvidas em tempo real</p>
             </aside>
             <main>
                 <div className='main-content'>
                     <img src={logoImg} alt="Ask-me" />
-                    <h2>Criar uma nova sala</h2>
-                    <div className='separator'>ou entre em uma sala</div>
+                    <h2>Criar uma nova sala</h2><br /><br />
                     <form onSubmit={handleCreateRoom}>
                         <input
                             type="text"
