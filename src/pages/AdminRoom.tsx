@@ -1,7 +1,10 @@
 import { useHistory, useParams } from 'react-router-dom'
 
+import LogoutImg from '../assets/images/logout.svg'
 import LogoImg from '../assets/images/logo.svg'
 import deleteImg from '../assets/images/delete.svg'
+import checkImg from '../assets/images/check.svg'
+import answerImg from '../assets/images/answer.svg'
 
 import { Button } from '../componentes/Button'
 import { Question } from '../componentes/Question/index'
@@ -24,6 +27,7 @@ export function AdminRoom() {
     
     
     const { title, questions } = useRoom(roomId)
+    console.log(questions)
 
     async function handleEndRoom(){
         await database.ref(`rooms/${roomId}`).update({
@@ -33,10 +37,20 @@ export function AdminRoom() {
         history.push('/')
     }
 
-    async function handleDeleteQuesrtion (questionId: string) {
+    async function handleDeleteQuestion (questionId: string) {
         if (window.confirm('Tem certeza que você deseja excluir essa pergunta?')) {
             await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
         }
+    }
+    async function handleCheckQuestionAsAnswered (questionId: string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isAnswered: true,
+        })
+    }
+    async function handleHighLightQuestion (questionId: string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isHighLighted: true,
+        })
     }
 
     return (
@@ -46,7 +60,9 @@ export function AdminRoom() {
                     <img src={LogoImg} alt="Ask-me" />
                     <div>
                         <RoomCode code={roomId} />
-                        <Button isOutlined onClick={handleEndRoom} >Encerrar</Button>
+                        <Button isOutlined onClick={handleEndRoom}>
+                            <img onClick={handleEndRoom} src={LogoutImg} alt="Encerrar sala" />
+                        </Button>
                     </div>
                 </div>
             </header>
@@ -64,10 +80,28 @@ export function AdminRoom() {
                                 key={question.id}
                                 content={question.content}
                                 author={question.author} 
+                                isHighLighted={question.isHighLighted}
+                                isAnswered={question.isAnswered}
                             >
+                               {!question.isAnswered && (
+                                   <>
+                                    <button
+                                    type='button'
+                                    onClick={() => handleCheckQuestionAsAnswered(question.id)}
+                                >
+                                    <img src={checkImg} alt="Remover pergunta" />
+                                </button>
                                 <button
                                     type='button'
-                                    onClick={() => handleDeleteQuesrtion(question.id)}
+                                    onClick={() => handleHighLightQuestion(question.id)}
+                                >
+                                    <img src={answerImg} alt="Remover pergunta" />
+                                </button>
+                                   </>
+                               )}
+                                <button
+                                    type='button'
+                                    onClick={() => handleDeleteQuestion(question.id)}
                                 >
                                     <img src={deleteImg} alt="Remover pergunta" />
                                 </button>

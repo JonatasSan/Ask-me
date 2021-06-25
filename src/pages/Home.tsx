@@ -2,6 +2,7 @@
 import { useHistory } from 'react-router-dom'
 
 import illustrationImg from '../assets/images/illustration.svg'
+import LoginImg from '../assets/images/login.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIconImg from '../assets/images/google-icon.svg'
 
@@ -73,7 +74,8 @@ export function Home(){
                             value={roomCode}
                         />
                         <Button type='submit'>
-                            Entrar na sala
+                            <img src={LoginImg} alt="" />
+                             Entrar
                         </Button>
                     </form>
                 </div>
